@@ -29,27 +29,27 @@ export default function useLoadGsiScript(
   const onScriptLoadErrorRef = useRef(onScriptLoadError);
   onScriptLoadErrorRef.current = onScriptLoadError;
 
-  useEffect(() => {
-    const scriptTag = document.createElement('script');
-    scriptTag.src = 'https://accounts.google.com/gsi/client';
-    scriptTag.async = true;
-    scriptTag.defer = true;
-    scriptTag.nonce = nonce;
-    scriptTag.onload = () => {
-      setScriptLoadedSuccessfully(true);
-      onScriptLoadSuccessRef.current?.();
-    };
-    scriptTag.onerror = () => {
-      setScriptLoadedSuccessfully(false);
-      onScriptLoadErrorRef.current?.();
-    };
+  // useEffect(() => {
+  //   const scriptTag = document.createElement('script');
+  //   scriptTag.src = 'https://accounts.google.com/gsi/client';
+  //   scriptTag.async = true;
+  //   scriptTag.defer = true;
+  //   scriptTag.nonce = nonce;
+  //   scriptTag.onload = () => {
+  //     setScriptLoadedSuccessfully(true);
+  //     onScriptLoadSuccessRef.current?.();
+  //   };
+  //   scriptTag.onerror = () => {
+  //     setScriptLoadedSuccessfully(false);
+  //     onScriptLoadErrorRef.current?.();
+  //   };
 
-    document.body.appendChild(scriptTag);
+  //   document.body.appendChild(scriptTag);
 
-    return () => {
-      document.body.removeChild(scriptTag);
-    };
-  }, [nonce]);
+  //   return () => {
+  //     document.body.removeChild(scriptTag);
+  //   };
+  // }, [nonce]);
 
   return scriptLoadedSuccessfully;
 }
